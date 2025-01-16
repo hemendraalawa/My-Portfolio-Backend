@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 app.post("/contact", (req, res) => {
   const { name, email, message } = req.body;
 
-  console.log("Form Data:", { name, email, message });
+  console.log("Form Data Received:", { name, email, message });
 
   // Nodemailer setup
   const transporter = nodemailer.createTransport({
@@ -31,18 +31,19 @@ app.post("/contact", (req, res) => {
   });
 
   const mailOptions = {
-    from: email, // Sender's email (user's email)
+    from: "hemendraalawa143@gmail.com", // Your Gmail address
     to: "hemendraalawa2017@gmail.com", // Your email
     subject: `New Message from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+    replyTo: email, // User's email
   };
 
-  // Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Error sending email:", error);
       return res.status(500).json({ message: "Failed to send email." });
     }
+    console.log("Email sent:", info.response);
     res.status(200).json({ message: "Message sent successfully!" });
   });
 });
