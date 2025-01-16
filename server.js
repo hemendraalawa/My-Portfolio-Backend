@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -25,8 +25,8 @@ app.post("/contact", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "hemendraalawa143@gmail.com", // Replace with your Gmail address
-      pass: "elzy xovo pcog pdyp", // Replace with your Gmail app password
+      user: "your_email@gmail.com", // Replace with your Gmail address
+      pass: "your_email_password", // Replace with your Gmail app password
     },
   });
 
