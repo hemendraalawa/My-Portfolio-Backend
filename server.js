@@ -26,7 +26,7 @@ app.post("/contact", (req, res) => {
     service: "gmail",
     auth: {
       user: "hemendraalawa143@gmail.com", // Replace with your Gmail address
-      pass: "elzy xovo pcog pdyp", // Replace with your Gmail app password
+      pass: "aoue wczt ogyz ruuf", // Replace with your Gmail app password
     },
   });
 
